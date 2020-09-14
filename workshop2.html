@@ -10,23 +10,44 @@
 			}
 		</style>
 		<script>
-            
+             
+            var vastaus = confirm("Are you a student? Press OK if you are / cancel if you are not.");
+            if(vastaus == true) {
+                document.write("<h1>Welcome Student!</h1>");
+            } else {
+                 document.write("<h1>Sorry, this page is for students only</h1>");
+            }
+
             document.write("<strong><i>&quot;If I had nine hours to chop down a tree, I'd spend the first six sharpening my ax.&quot;</strong>\n-- Abraham Lincoln</i>");
 
-          function repeatingText() {
+            function repeatingText() {
                for(var i = 0; i <= 50; i++) {
                     document.write("<strong> Hello! </strong>");
                 }
             }
           
             function checkBrowser() {
-                if(navigator.appCodeName = "Mozilla" || "Firefox") {
+                if(navigator.appCodeName == "Mozilla" || "Firefox") {
                      location.href = "http://mozilla.org";
 
                 } else 
                     location.href = "http://microsoft.com";
             }
-            
+
+            function randomizeImage() {
+                
+                var images = [
+                'http://farm4.staticflickr.com/3691/11268502654_f28f05966c_m.jpg', 
+                'http://farm1.staticflickr.com/33/45336904_1aef569b30_n.jpg', 
+                'http://farm6.staticflickr.com/5211/5384592886_80a512e2c9.jpg'
+                ];
+                              
+                var num = Math.round (Math.random() * 2);
+                                
+                document.write(images[num]);
+
+            }
+
         </script>
 </head>
 
