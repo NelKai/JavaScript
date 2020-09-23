@@ -16,13 +16,7 @@
     }
     
     </style>
-    <script>
-    
-        
-        
-       
-      
-    </script>
+   
     
     <h1>Workshop 3: JavaScript Events</h1>
     <hr />
@@ -33,8 +27,8 @@
     <h2>Exercise 1</h2>
     <p>&nbsp;Below you will see three buttons. Edit the source code and add an onClick-events to these buttons.</p>
     <p>
-      <button>Button 1</button>
-      <button>Button 2</button>
+      <button id="button1">Button 1</button>
+      <button id="button2">Button 2</button>
       <button>Button 3</button>
     </p>
     
@@ -130,10 +124,10 @@
     command:   <i>document.getElementById("textdata").value</i>. We will study the forms deeper in Workshops 4 and 5.</li>
     </ul>
     <form>
-      <textarea></textarea><br>
+      <textarea id="textdata"></textarea><br>
       <p>Näin monta merkkiä käytetty:</p>
       <p id="laskuri"></p>
-        <button>Send me</button>
+        <button id="formButton">Send me</button>
     </form>
     <h2>Exercise 4</h2>
     So far you have hardcoded the events into HTML tags. Make a copy of your exercise file and try to add the events dynamically, without touching the HTML at all. This can be 
@@ -159,6 +153,77 @@
     The second button should show your location on a Google Maps. You can see the map with a spesific location using the URL 
     "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false" where latlon is your latitude + longitute data separated by 
     comma (,).
-    </li>
+    </li> 
+    
+    <script>
+
+      var my_time = new Date();
+
+      var buttonMessage = document.getElementById('button1');
+      buttonMessage.addEventListener("click", function() {
+        alert("You clicked me!" + " " + my_time);
+      });
+
+      var buttonTaulukko = document.getElementById("button2");
+      buttonTaulukko.addEventListener("click", function() {
+        var html = `
+          <h1>Taulukko</h1>
+          <table class="display" cellspacing="0" width="100%">
+              <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Salary</th>
+              </tr>
+              <tr>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>300,000$</td>
+              </tr>
+              <tr>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>170,750$</td>
+              </tr>
+          </table>
+          `;
+
+        document.write(html);
+      });
+      
+      var otsikkoMessage = document.getElementsByTagName("h2")[1];
+      otsikkoMessage.addEventListener("mouseover", function() {
+        console.log('Stepped over my mouse!');
+      });
+      
+      var otsikkoMessage2 = document.getElementsByTagName("h2")[1];
+      otsikkoMessage2.addEventListener("mouseout", function() {
+        alert('Bye bye mouse!');
+      });
+      
+      var tekstiFocus = document.getElementById("textdata");
+      tekstiFocus.addEventListener("focus", function() {
+        document.getElementById("textdata").value = "Please fill in the form with proper data.";
+      });
+
+      var tekstiLaskuri = document.getElementById("textdata");
+      tekstiLaskuri.addEventListener("keydown", function() {
+        x = document.getElementById("textdata").value;
+        y = x.length;
+        document.getElementById("laskuri").innerHTML = y;
+      });
+
+      var tekstiTarkistaja = document.getElementById("formButton");
+      tekstiTarkistaja.addEventListener("click", function() {
+        var sisältö = document.getElementById("textdata").value;
+        if(sisältö === "") {
+            alert("This area cannot be left empty.");
+            return false;
+        } else {
+            alert("Thank you for your input!");
+            return true;
+        }
+      });
+    
+    </script>
     </html>
     

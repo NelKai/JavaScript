@@ -18,70 +18,79 @@
     </style>
     <script>
     
-        var myTime = new Date();
+      var myTime = new Date();
 
-        function showTable() {
-           var html = `
-            <h1>Taulukko</h1>
-            <table class="display" cellspacing="0" width="100%">
-                <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Salary</th>
-                </tr>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>300,000$</td>
-                </tr>
-                <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>170,750$</td>
-                </tr>
-            </table>
-            `;
+      function showTable() {
+        var html = `
+          <h1>Taulukko</h1>
+          <table class="display" cellspacing="0" width="100%">
+              <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Salary</th>
+              </tr>
+              <tr>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>300,000$</td>
+              </tr>
+              <tr>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>170,750$</td>
+              </tr>
+          </table>
+          `;
 
-            document.write(html);
+        document.write(html);
         }
         
-        
        
-        function printTable() {
-
-        
+      function printTable() {
         var persons = [["Nyssa P. Skinner", "593-4241 Lacus, St.","Cape Verde"], 
                         ["Camilla F. Strickland","391-2150 Ac Rd.","Andorra"],
                         ["Reagan U. Andrews", "P.O. Box 472, 2271 Mauris Ave","Faroe Islands"],
                         ["Kelsey D. Clark", "P.O. Box 866, 7793 Aliquet Ave","Bulgaria"]];
             
            
-            for(var i = 0; i < persons.length; i++) {
-              document.write(persons[i] + "\n");
-             }          
-         }
+        for(var i = 0; i < persons.length; i++) {
+            document.write(persons[i] + "\n");
+          }          
+      }
 
-         function fokusFunktio(x) {
-            x.style.background = "yellow";
-            document.getElementById("textdata").value = "Please fill in the form with proper data.";
-         }
+      function fokusFunktio(x) {
+        x.style.background = "yellow";
+        document.getElementById("textdata").value = "Please fill in the form with proper data.";
+      }
 
-         function keyboardLaskuri() {
-            x = document.getElementById("textdata").value;
-            y = x.length;
-            document.getElementById("laskuri").innerHTML = y;
-         }
+      function keyboardLaskuri() {
+        x = document.getElementById("textdata").value;
+        y = x.length;
+        document.getElementById("laskuri").innerHTML = y;
+      }
     
-         function onkoTyhja() {
-           var sisältö = document.getElementById("textdata").value;
-           if(sisältö === "") {
-              alert("This area cannot be left empty.");
-              return false;
-           } else {
-              alert("Thank you for your input!");
-              return true;
-           }
-         }
+      function onkoTyhja() {
+        var sisältö = document.getElementById("textdata").value;
+        if(sisältö === "") {
+            alert("This area cannot be left empty.");
+            return false;
+        } else {
+            alert("Thank you for your input!");
+            return true;
+        }
+      }
+
+      function showCoordinates(event) {
+        var x = event.clientX;
+        var y = event.clientY;
+        var coor = "X coordinates: " + x + ", Y coordinates: " + y;
+
+        document.getElementById("demo").innerHTML = coor;
+      }
+
+      function clearCoordinates() {
+        document.getElementById("demo").innerHTML = "";
+      }
 
     </script>
     
@@ -202,7 +211,8 @@
     
     <h2>Exercise 5</h2>
     
-    <div id="coordinates"></div>
+    <div id="coordinates" onmousemove="showCoordinates(event)" onmouseout="clearCoordinates()"></div>
+    <p id="demo"></p>
     
     <p>Add onMouseMove -event to the DIV-element above. When you move mouse over the DIV (rectangle) the program should output the coordinates of your pointer. Try first 
     outputting to the console using console.log. <p>HINT. When the event occurs, call for a method showXY(event); Then in the actual method you can output data from the 
