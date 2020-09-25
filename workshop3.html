@@ -52,10 +52,10 @@
                         ["Reagan U. Andrews", "P.O. Box 472, 2271 Mauris Ave","Faroe Islands"],
                         ["Kelsey D. Clark", "P.O. Box 866, 7793 Aliquet Ave","Bulgaria"]];
             
-           
+        document.write("<table border='1'>");
         for(var i = 0; i < persons.length; i++) {
-            document.write(persons[i] + "\n");
-          }          
+            document.write("<tr><td>" + persons[i] + "</td></tr>" + persons[i+1] + "</td></tr>" + persons[i+2] + "</td></tr>");
+          }     
       }
 
       function fokusFunktio(x) {

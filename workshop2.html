@@ -27,7 +27,7 @@
             }
           
             function checkBrowser() {
-                if(navigator.appCodeName == "Mozilla" || "Firefox") {
+                if(navigator.appCodeName == "Mozilla") {
                      location.href = "http://mozilla.org";
 
                 } else 
@@ -44,7 +44,7 @@
                               
                 var num = Math.round (Math.random() * 2);
                                 
-                document.write(images[num]);
+                document.write('<img src="' + images[num] + '">');
 
             }
 
