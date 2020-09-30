@@ -1,4 +1,5 @@
 <HTML>
+<head>
 <style>
 body {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -23,12 +24,11 @@ img {
 
 <script>
 
-  //button1
+  //exercise1
   function headingMuutos() {
     document.getElementById("heading1").innerHTML = "Modified Heading!";
   }
 
-  //button2
   function headingCSS() {
     var heading2 = document.getElementsByTagName('h2');
     heading2[1].style.color = "white";
@@ -37,7 +37,6 @@ img {
     heading2[1].style.textDecoration = "underline";
   }
 
-  //button3
   function uuttaTekstiä() {
     var uusiTeksti = document.createElement('p');
     uusiTeksti.innerHTML = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit.";
@@ -47,9 +46,70 @@ img {
     uusiKohta[3].appendChild(uusiTeksti);
   }
 
-    
-  function 
+  //exercise 2
+  function hide() {
+    document.getElementById("CheckboxGroup1_0").style.display = "none";
+  }  
+
+  function show() {
+    document.getElementById("CheckboxGroup1_0").style.display = "block";
+  }
+
+  function surprise() {
+    var surpriseFonts = document.getElementsByClassName("surprise");
+    for (var i = 0; i < surpriseFonts.length; i++) {
+        var surpriseFont = surpriseFonts[i];
+        surpriseFont.style.fontSize = "20px";
+    }
+  }
+  
+  //exercise 3
+    function valinta() {
+      var x = document.getElementById("mySelect");
+      alert("You have chosen: " + x.options[x.selectedIndex].value);
+    }
+
+    function colorBorder() {
+      document.getElementById("carimage").style.border = "3px solid blue";
+    }
+
+    function colorBorderOff() {
+      document.getElementById("carimage").style.border = "none";
+    }
+
+    function image() {
+      
+    }
+   
+   //exercise 4
+    function changePosition() {
+      document.getElementById("carimage").style = "position: absolute; left: position + 200px; bottom: position + 500px";
+    }
+
+    function doMove() {
+      var liikkuvaKuva = document.getElementById("carimage");
+      var liike = setInterval(function () {
+        liikkuvaKuva.style.float = "right";
+       
+      }, 1000);
+    }
+
+    function fadeOut() {
+     var haihtuvaKuva = document.getElementById("carimage");
+     var haihtuminen = setInterval(function () {
+       if (!haihtuvaKuva.style.opacity) {
+         haihtuvaKuva.style.opacity = 1;
+       }
+       if (haihtuvaKuva.style.opacity > 0) {
+         haihtuvaKuva.style.opacity -= 0.1;
+       } else {
+         clearInterval(haihtuminen);
+       }
+     }, 250);
+    }    
+
 </script>
+</head>
 
 <h1>Workshop 4: DOM Scripting</h1>
 <hr />
@@ -85,7 +145,7 @@ img {
     Show me</label>
   <br>
   <label>
-    <input type="checkbox" name="CheckboxGroup1" value="3" id="CheckboxGroup1_2"> 
+    <input onchange="surprise()" type="checkbox" name="CheckboxGroup1" value="3" id="CheckboxGroup1_2"> 
     <span id="surpise">Surprise</span>
   </label>
 </p>
@@ -100,21 +160,21 @@ img {
 <li>When the mouse is moved on top of the image, a colored border should appear surrounding it. On mouse out, border should disappear</li>
 <li>When you have accomplished the above, change the image (id=&quot;carimage&quot;) below based on the users choice on the pulldown menu below. Find appropriate images from the web.
   <p>Select a new car from the list.</p>
-  <select name="mySelect" id="mySelect" onchange="">
-    <option value="BMW">BMW         
-    <option value="Audi">Audi
-    <option value="Mercedes">Mercedes
-    <option value="Volvo">Volvo
+  <select onchange="valinta()" onchange="image()" name="mySelect" id="mySelect" >
+    <option value="BMW">BMW</option>       
+    <option value="Audi">Audi</option>
+    <option value="Mercedes">Mercedes</option>
+    <option value="Volvo">Volvo</option>
   </select>
   <br>
   <br>
-<img onmouseover="" onmouseout="" style="left: 0px; opacity: 1;" src="http://cdn.bmwblog.com/wp-content/uploads/2015/11/BMW-2-Series-Gran-Coupe-Rendering.jpg" width="400" id="carimage"/></li>
+<img onmouseover="colorBorder()" onmouseout="colorBorderOff()" style="left: 0px; opacity: 1;" width="400" img src="https://picsum.photos/id/1016/367/267" id="carimage"/></li>
 <h2>Exercise 4: Moving things around</h2>
 <ul>
   <li>
     <p class="surprise">You can do neat things by editing CSS-rules via  JavaScript. See the examples in lecture slides. Then try these:</p>
     <ol>
-      <li><button onclick="changePosition()">Move!</button>Select the div with an id &quot;carimage&quot; and move it 200px left and 500px down</li>
+      <li><button id="buttonPosition" onclick="changePosition()">Move!</button>Select the div with an id &quot;carimage&quot; and move it 200px left and 500px down</li>
       <li><button onclick="setInterval(function(){doMove();},1000); "/>Animate</button> Write a  funtion doMove() which  will move the image across the screen, or even better: back and forth on  the screen. The Interval required has already been added to the onclick -event of the list item.</li>
       <li><button onclick="setInterval(function(){fadeOut();},250);"/>Fade out!</button> Wite  a function fadeOut() which will slowly decrease the opacity of the image from 1.0 to  0 making it fade out. The Interval required has already been added to the onclick -event of the list item</li>
       <li><button onclick="hide()"/>Disappear! </button>Finally, write JavaScript which will remove the image from the page</li>
@@ -186,6 +246,7 @@ Salary:
     <p dir="ltr">Write a loop, which goes through all the LI tags in the page and replaces them with a &lt;strong&gt; tagged, red text saying &quot;Replaced&quot;.</p>
   </li>
   <li dir="ltr">How would you replace the contents only on the ones with the word &lsquo;Select&rsquo; in them?</li></ul>
+  
   
   </html>
 
