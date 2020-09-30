@@ -20,11 +20,35 @@ img {
 }
 
 </style>
+
 <script>
 
-<!-- JavaScript goes here -->
+  //button1
+  function headingMuutos() {
+    document.getElementById("heading1").innerHTML = "Modified Heading!";
+  }
 
+  //button2
+  function headingCSS() {
+    var heading2 = document.getElementsByTagName('h2');
+    heading2[1].style.color = "white";
+    heading2[1].style.background = "blue";
+    heading2[1].style.fontFamily = "Impact, sans-serif";
+    heading2[1].style.textDecoration = "underline";
+  }
 
+  //button3
+  function uuttaTekstiä() {
+    var uusiTeksti = document.createElement('p');
+    uusiTeksti.innerHTML = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit.";
+    uusiTeksti.setAttribute('id', 'newTeksti');
+
+    var uusiKohta = document.getElementsByTagName('p');
+    uusiKohta[3].appendChild(uusiTeksti);
+  }
+
+    
+  function 
 </script>
 
 <h1>Workshop 4: DOM Scripting</h1>
@@ -32,12 +56,12 @@ img {
 <p>In this exercise we will practice the art of DOM Scripting with JavaScript. Use the lecture-material as a reference guide side by side these exercises. It might also be a good idea to save the lines of code you write during the exercises for later use. </p>
 
 
-<h2>Exercise 1: Basic  DOM Manipulation</h2>
+<h2 id="heading1">Exercise 1: Basic  DOM Manipulation</h2>
 <p>&nbsp;Below you will see three buttons. Edit the source code and add an onClick-events to these buttons. Use Developer Console to find the </p>
 <p>
-  <button onclick="">Button 1</button>
-  <button onclick="">Button 2</button>
-  <button onclick="">Button 3</button>
+  <button onclick="headingMuutos()">Button 1</button>
+  <button onclick="headingCSS()">Button 2</button>
+  <button onclick="uuttaTekstiä()">Button 3</button>
 </p>
 
 <ul>
@@ -162,6 +186,7 @@ Salary:
     <p dir="ltr">Write a loop, which goes through all the LI tags in the page and replaces them with a &lt;strong&gt; tagged, red text saying &quot;Replaced&quot;.</p>
   </li>
   <li dir="ltr">How would you replace the contents only on the ones with the word &lsquo;Select&rsquo; in them?</li></ul>
-</html>
+  
+  </html>
 
 
