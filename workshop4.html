@@ -39,11 +39,17 @@ img {
 
   function uuttaTekstiä() {
     var uusiTeksti = document.createElement('p');
-    uusiTeksti.innerHTML = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit.";
+    uusiTeksti.innerHTML = "<i>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit.</i>";
     uusiTeksti.setAttribute('id', 'newTeksti');
 
     var uusiKohta = document.getElementsByTagName('p');
     uusiKohta[3].appendChild(uusiTeksti);
+
+    var imgLogo = document.createElement("img");
+    imgLogo.src = "https://image.shutterstock.com/image-vector/internet-design-logoicon-template-600w-1037418430.jpg";
+    var loc = document.getElementsByTagName('p');
+    loc[3].appendChild(imgLogo);
+    imgLogo.style = "width: 70px; length 70px";
   }
 
   //exercise 2
@@ -67,8 +73,8 @@ img {
     function valinta() {
       var x = document.getElementById("mySelect");
       alert("You have chosen: " + x.options[x.selectedIndex].value);
-    }
-
+    }      
+    
     function colorBorder() {
       document.getElementById("carimage").style.border = "3px solid blue";
     }
@@ -77,9 +83,19 @@ img {
       document.getElementById("carimage").style.border = "none";
     }
 
-    function image() {
+   function vaihtuvaKuva() {
+      var kuvaTaulukko = ['https://images.pexels.com/photos/971522/pexels-photo-971522.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+                          'https://images.pexels.com/photos/93615/pexels-photo-93615.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+                          'https://images.pexels.com/photos/373282/pexels-photo-373282.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+                          'https://images.pexels.com/photos/4501407/pexels-photo-4501407.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+                          ];
       
-    }
+      var z = document.getElementById("myselect");
+      var value = z.options[z.selectedIndex].value;
+      var kuvaURL = kuvaTaulukko[value];
+
+      document.getElementById("carimage").src = kuvaURL;
+      }
    
    //exercise 4
     function changePosition() {
@@ -113,6 +129,7 @@ img {
       img.parentNode.removeChild(img);
     }
 
+    //exercise 5
     function insertRows() {
       var taulukko = document.getElementById("data");
       var row = taulukko.insertRow(6);
@@ -177,7 +194,7 @@ img {
 <li>When the mouse is moved on top of the image, a colored border should appear surrounding it. On mouse out, border should disappear</li>
 <li>When you have accomplished the above, change the image (id=&quot;carimage&quot;) below based on the users choice on the pulldown menu below. Find appropriate images from the web.
   <p>Select a new car from the list.</p>
-  <select onchange="valinta()" onchange="image()" name="mySelect" id="mySelect" >
+  <select onchange="valinta()" onchange="vaihtuvaKuva()" name="mySelect" id="mySelect" >
     <option value="BMW">BMW</option>       
     <option value="Audi">Audi</option>
     <option value="Mercedes">Mercedes</option>
@@ -185,7 +202,7 @@ img {
   </select>
   <br>
   <br>
-<img onmouseover="colorBorder()" onmouseout="colorBorderOff()" style="left: 0px; opacity: 1;" width="400" img src="https://picsum.photos/id/1016/367/267" id="carimage"/></li>
+<img onmouseover="colorBorder()" onmouseout="colorBorderOff()" style="left: 0px; opacity: 1;" width="400" img src="" id="carimage"/></li>
 <h2>Exercise 4: Moving things around</h2>
 <ul>
   <li>
