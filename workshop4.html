@@ -45,6 +45,8 @@ img {
     var uusiKohta = document.getElementsByTagName('p');
     uusiKohta[3].appendChild(uusiTeksti);
 
+    document.body.style.background = "yellow";
+
     var imgLogo = document.createElement("img");
     imgLogo.src = "https://image.shutterstock.com/image-vector/internet-design-logoicon-template-600w-1037418430.jpg";
     var loc = document.getElementsByTagName('p');
@@ -82,19 +84,27 @@ img {
     function colorBorderOff() {
       document.getElementById("carimage").style.border = "none";
     }
-
+    
+   
    function vaihtuvaKuva() {
-      var kuvaTaulukko = ['https://images.pexels.com/photos/971522/pexels-photo-971522.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+       var kuvaTaulukko = ['https://images.pexels.com/photos/971522/pexels-photo-971522.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
                           'https://images.pexels.com/photos/93615/pexels-photo-93615.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
                           'https://images.pexels.com/photos/373282/pexels-photo-373282.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
                           'https://images.pexels.com/photos/4501407/pexels-photo-4501407.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
                           ];
-      
       var z = document.getElementById("myselect");
-      var value = z.options[z.selectedIndex].value;
-      var kuvaURL = kuvaTaulukko[value];
+      var kuva = document.getElementById("carimage");
 
-      document.getElementById("carimage").src = kuvaURL;
+      if (z.options[z.selectedIndex].value == "Audi") {
+        kuva.src = kuvaTaulukko[0];
+      } else if (z.options[z.selectedIndex].value == "BMW") {
+        kuva.src = kuvaTaulukko[1];
+      } else if (z.options[z.selectedIndex].value == "Mercedes") {
+        kuva.src = kuvaTaulukko[2];
+      } else if (z.options[z.selectedIndex].value == "Volvo") {
+        kuva.src = kuvaTaulukko[3];
+      }
+
       }
    
    //exercise 4
@@ -102,13 +112,13 @@ img {
       document.getElementById("carimage").style = "position: absolute; left: position + 200px; bottom: position + 500px";
     }
 
+
     function doMove() {
       var liikkuvaKuva = document.getElementById("carimage");
-      var liike = setInterval(function () {
-        liikkuvaKuva.style.float = "right";
+      liikkuvaKuva.style.float = "right";
        
-      }, 1000);
-    }
+      }
+    
 
     function fadeOut() {
      var haihtuvaKuva = document.getElementById("carimage");
@@ -202,7 +212,7 @@ img {
   </select>
   <br>
   <br>
-<img onmouseover="colorBorder()" onmouseout="colorBorderOff()" style="left: 0px; opacity: 1;" width="400" img src="" id="carimage"/></li>
+<img onmouseover="colorBorder()" onmouseout="colorBorderOff()" style="left: 0px; opacity: 1;" width="400" img src = "https://images.pexels.com/photos/971522/pexels-photo-971522.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" id="carimage"/></li>
 <h2>Exercise 4: Moving things around</h2>
 <ul>
   <li>
