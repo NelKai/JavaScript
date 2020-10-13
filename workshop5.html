@@ -17,9 +17,32 @@
     
     </style>
     <script>
-    <!-- Javascript goes here -->
     
-    <!-- Exercise #1 A -->
+    //exercise 1
+
+    function getData() {
+      var x = document.forms["commentForm"]["emailField"].value;
+      var y = document.forms["commentForm"]["commentField"].value;
+      alert("Email: " + emailField);
+      alert("Comment: " + commentField);
+    }
+
+    function lomakeCheck() {
+      var z = document.forms["commentForm"]["emailField"].value;
+      if (z.length < 6  || z.length > 15) {
+        alert("Email should be between 6 and 15 characters");
+        return false;
+      }
+      
+      var n = document.forms["commentForm"]["commentField"].value;
+      if (n == null || n == "") {
+        alert("Comment field cannot be left empty");
+        return false;
+      } else if (n.length > 50) {
+        alert("Comment cannot be more than 50 characters");
+        return false;
+      } 
+    }
     
     </script>
     
@@ -51,13 +74,13 @@
     returning false. Otherwise text fields and style changes will be cleared. Hint: See the 
     PowerPoint -slides.</p>
     
-    <form onsubmit="return getData()">
+    <form name="commentForm" onsubmit="return getData()">
     
         Email address:<br>
-      <input type="text" name="email">
+      <input name="emailField" type="text" name="email">
       <br>
         Comment:<br>
-      <textarea name="comment"></textarea>
+      <textarea name="commentField" name="comment"></textarea>
         <br>
     <input type="submit" value="Send">
     </form>
@@ -113,18 +136,29 @@
      
             <fieldset>
                 <p>Calculate a bulk book order.</p>
-                <div><label for="quantity">Quantity</label><input type="number" 
-    name="quantity" id="quantity" value="1" min="1" required></div>
-                <div><label for="price">Price Per Unit</label><input type="text" 
-    name="price" id="price" value="1.00" required></div>
-                <div><label for="tax">VAT (%)</label><input type="text" name="tax" 
-    id="tax" value="0.0" required></div>
-                <div><label for="discount">Discount</label><input type="text" 
-    name="discount" id="discount" value="0.00" required></div>
-                <div><label for="total">Total</label><input type="text" name="total" 
-    id="total" value="0.00"></div>
+                <div>
+                  <label for="quantity">Quantity</label><input type="number" 
+                  name="quantity" id="quantity" value="1" min="1" required>
+                </div>
+                <div>
+                  <label for="price">Price Per Unit</label><input type="text" 
+                  name="price" id="price" value="1.00" required>
+                </div>
+                <div>
+                  <label for="tax">VAT (%)</label><input type="text" name="tax" 
+                  id="tax" value="0.0" required>
+                </div>
+                <div>
+                  <label for="discount">Discount</label><input type="text" 
+                  name="discount" id="discount" value="0.00" required>
+                </div>
+                <div>
+                  <label for="total">Total</label><input type="text" name="total" 
+                  id="total" value="0.00">
+                </div>
                 <div><input type="submit" value="Calculate" id="submit" 
-    onClick="calculate()"></div>
+                onClick="calculate()">
+              </div>
          </fieldset>
     
     
