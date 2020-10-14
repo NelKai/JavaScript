@@ -1,4 +1,5 @@
-<HTML>
+<!DOCTYPE HTML>
+    <head>
     <style>
     body {
         font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -21,34 +22,46 @@
     //exercise 1
 
     function getData() {
-      var x = document.forms["commentForm"]["emailField"].value;
-      var y = document.forms["commentForm"]["commentField"].value;
-      alert("Email: " + emailField);
-      alert("Comment: " + commentField);
-    }
-
-    function lomakeCheck() {
-      var z = document.forms["commentForm"]["emailField"].value;
-      if (z.length < 6  || z.length > 15) {
+      var x = document.forms.commentForm.email.value;
+      var y = document.forms.commentForm.comment.value;
+    
+      if (x.length < 6  || x.length > 15) {
         alert("Email should be between 6 and 15 characters");
+        document.forms.commentForm.email.style.border = "1px solid red";
+        return false;
+      }
+      if (x.indexOf("@") < 0) {
+        alert("Please enter email in this form: example@example.com");
+        document.forms.commentForm.email.style.border = "1px solid red";
         return false;
       }
       
-      var n = document.forms["commentForm"]["commentField"].value;
-      if (n == null || n == "") {
+      if (y == null || y == "") {
         alert("Comment field cannot be left empty");
+        document.forms.commentForm.comment.style.border = "1px solid red";
         return false;
-      } else if (n.length > 50) {
+      } else if (y.length > 50) {
         alert("Comment cannot be more than 50 characters");
+        document.forms.commentForm.comment.style.border = "1px solid red";
         return false;
-      } 
+        } 
+       
+        alert("Email: " + x + "\nComment: " + y);
     }
+    
+    //exercise 2
+
+    
     
     </script>
     
     <!-- This is for assignment 3 -->
     <script src="shopping.js"></script>
+
+    <title>Workshop 5</title>
+    </head>
     
+    <body>
     <h1>Workshop 5: Smart Forms</h1>
     <hr />
     <p>In this exercise we will practice the art of DOM Scripting with JavaScript. Use the 
@@ -77,14 +90,14 @@
     <form name="commentForm" onsubmit="return getData()">
     
         Email address:<br>
-      <input name="emailField" type="text" name="email">
+      <input type="text" name="email">
       <br>
         Comment:<br>
-      <textarea name="commentField" name="comment"></textarea>
+      <textarea name="comment"></textarea>
         <br>
-    <input type="submit" value="Send">
+    <input type="submit" value="Send" onclick="lomakeCheck()">
     </form>
-    </p>
+    
     <h2>Exercise 2: Membership Calculator</h2>
     <p data-line="16">Below there is a membership calculator form. It has 3 fields: 
     Membership Type (pulldown), Years (input) and Costs (input). User can use the 
@@ -173,4 +186,5 @@
     asks detailed information regarding on the selected   contact method.</p>
       </li>
     </ul>
+    </body>
     </html>
