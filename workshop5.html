@@ -51,30 +51,69 @@
     
     //exercise 2
 
-      function cost() {
-        var type = document.forms.theForm.type.value;
+      function calculateCost() {
+        var type = document.forms.theForm.type;
         var years = document.forms.theForm.years.value;
         var n = 0;
-
-        if (type == "basic") {
-          n = 10 * years;
-        } else if (type == "premium") {
-          n = 15 * years;
-        } else if (type == "gold") {
-          n = 20 * years;
-        } else if (type == "platinum") {
-          n = 25 * years;
+     
+        if (years <= 2) {
+          if (type.options[type.selectedIndex].value == "basic") {
+            n = 10 * years;
+          } else if (type.options[type.selectedIndex].value == "premium") {
+            n = 15 * years;
+          } else if (type.options[type.selectedIndex].value == "gold") {
+            n = 20 * years;
+          } else if (type.options[type.selectedIndex].value == "platinum") {
+            n = 25 * years;
+          }
+          document.forms.theForm.cost.value = n;
+        } 
+      
+        if (years > 2) {
+          if (type.options[type.selectedIndex].value == "basic") {
+            n = (10 * years) * 0.8;
+          } else if (type.options[type.selectedIndex].value == "premium") {
+            n = (15 * years) * 0.8;
+          } else if (type.options[type.selectedIndex].value == "gold") {
+            n = (20 * years) * 0.8;
+          } else if (type.options[type.selectedIndex].value == "platinum") {
+            n = (25 * years) * 0.8;
+          }
+         
+          var alennus_1 = document.createElement('p');
+          alennus_1.style.color = "red";
+          alennus_1.innerHTML = "By choosing a membership of over 2 years you are now eligible for a 20% discount!";
+          var alennus_1Kohta = document.getElementsByTagName('p');
+          alennus_1Kohta[10].appendChild(alennus_1);
+          
+          document.forms.theForm.cost.value = n;
         }
 
-        var summa = document.forms.theForm.cost.value;
-        var summa = n;
+        if (years >= 5) {
+          if (type.options[type.selectedIndex].value == "basic") {
+            n = ((10 * years) * 0.8) -5;
+          } else if (type.options[type.selectedIndex].value == "premium") {
+            n = ((15 * years) * 0.8) -5;
+          } else if (type.options[type.selectedIndex].value == "gold") {
+            n = ((20 * years) * 0.8) -5;
+          } else if (type.options[type.selectedIndex].value == "platinum") {
+            n = ((25 * years) * 0.8) -5;
+          }
 
+          var alennus_2 = document.createElement('p');
+          alennus_2.style = "color: blue; font-size: 15px;";
+          alennus_2.innerHTML = "By choosing a membership of 5 or more years you are now eligible for an added 5€ discount!";
+          var alennus_2Kohta = document.getElementsByTagName('p');
+          alennus_2Kohta[10].appendChild(alennus_2);
+
+          document.forms.theForm.cost.value = n;
+        }
       }
     
     </script>
     
     <!-- This is for assignment 3 -->
-    <script src="shopping.js"></script>
+    <!-- <script src="shopping.js"></script> -->
 
     <title>Workshop 5</title>
     </head>
@@ -148,7 +187,7 @@
           <div>
             <label for="cost">Cost</label><input type="text" name="cost" id="cost" disabled>
           </div>
-            <input type="submit" value="Calculate" id="submit_1">
+            <input type="button" value="Calculate" id="submit_1" onclick="calculateCost()">
       </fieldset>
     </form>
         
