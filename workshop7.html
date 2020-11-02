@@ -1,6 +1,69 @@
 <html>
     <head>
-        <link href="/learning/styles/default.css" rel="stylesheet" type="text/css" />
+        <!-- <link href="/learning/styles/default.css" rel="stylesheet" type="text/css" /> -->
+
+        <script>
+
+            //Exercise 1
+            
+            function parseData(file) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", file, true);
+                xhttp.send();
+                
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        var xmlDoc = xml.responseXML;
+                        var quotes = xmlDoc.getElementsByTagName("quote");
+                        
+                        for (var i = 0; i < quotes.length; i++) {
+                            quote = quotes[i].childNodes[0].nodeValue + "<br>";
+                            document.getElementById("dataLoc").innerHTML += quote;
+                        }
+                    }
+                }    
+            }      
+
+            //Exercise 2 
+
+            function getData() {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "http://iceberg-cycle.codio.io", true);
+                xmlhttp.send();
+
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.readyState == 200) {
+                        document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+                    }
+                }
+            }      
+
+            //Exercise 4
+
+            function getNews() {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "http://www.iltalehti.fi/rss/uutiset.xml", true);
+                xmlhttp.send();
+
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.readyState == 200) {
+                        var titles = xmlDoc.getElementsByTagName("title");
+
+                        var txt = "";
+                        txt += "<ul>";
+                        
+                        for (var i = 0; i < titles.length; i++) {
+                            txt += "<li>" + titles[i] + "</li>";
+                        }
+
+                        txt += "</ul>";
+
+                        document.getElementById("newsfeed").innerHTML = txt;
+                    }
+                }
+            }
+
+        </script>
     </head>
 
     <body>
@@ -26,8 +89,8 @@
     </div>
     <p>This page has XML data embedded into it. See page source, line 78. The browser cannot display it properly, but its there. Below you can also see the structure data. Write a function called parseData(), which 
     will output the quote and author tags from XML when button is clicked. Hint: Use document.getElementsByTagName() function. See PowerPoint for reference.</p>
-    <div>
-        <input id="Fetch" name="Fetch" type="button" value="Button" />
+    <div id="dataLoc">
+        <input id="Fetch" name="Fetch" type="button" value="Button" onclick="parseData()"/>
     </div>
     <div>
         <pre>
@@ -87,7 +150,8 @@
         <p>The sample function shown in PowerPoint slides is pasted below.</p>
     </div>
     <div>
-        <pre>// Load AJAX content into web page
+        <pre>
+            // Load AJAX content into web page
             function loadXMLDoc() {
                 // Create AJAX object
                 var xmlhttp = new XMLHttpRequest();
@@ -108,13 +172,13 @@
     </div>
     <div>
         <p>
-            <input id="Fetch2" name="Fetch2" type="button" value="Button" />
+            <input id="Fetch2" name="Fetch2" type="button" value="Button" onclick="getData()"/>
         </p>
     </div>
     <div>
         <div id="quotes">&nbsp;</div>
     </div>
-    <div>
+    <div id="myDiv">
     </div>
     <div>
         <h2>Exercise 3: Parsing the XML</h2>
@@ -158,7 +222,7 @@
         apps/tree/5%3A%20Asynchronous%20JavaScript%20(AJAX)%2Filtalehti.xml). Parse the results and display on page below as a list. You can add link to the original news item as well.</p>
     </div>
     <div>
-        <ul>
+        <ul id="newsList">
             <li>News heading 1</li>
             <li>News heading 2</li>
             <li><a href="#">News heading 3</a></li>
@@ -168,7 +232,7 @@
         <input id="Fetch3" name="Fetch3" type="button" value="Load YAHOO newsfeed" />
     </div>
     <div>
-        <input id="Fetch3" name="Fetch3" type="button" value="Load Iltalehti Newsfeed" />
+        <input id="Fetch3" name="Fetch3" type="button" value="Load Iltalehti Newsfeed" onclick="getNews()" />
     </div>
     <div>
         <div id="newsfeed">
@@ -178,5 +242,5 @@
 
     </body>
 
-    
+
 </html>
