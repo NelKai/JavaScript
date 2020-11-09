@@ -373,14 +373,50 @@
    
    function loadJSONDoc() {
    
-       var url = "https://api.myjson.com/bins/18bfgz";
-   
+     var url = "https://my-json-server.typicode.com/typicode/demo/db";
+     var xmlhttp = new XMLHttpRequest();
+     xmlhttp.open("GET", url, true);
+     xmlhttp.send();
+
+     xmlhttp.onreadystatechange = function() {
+         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+             document.getElementById("rawdata").innerHTML = xmlhttp.responseText;
+
+         }
+     }
+     
    }
    
    function loadJSONDocWithParse() {
    
-       var url = "https://api.myjson.com/bins/18bfgz";
-   
+     var url = "https://my-json-server.typicode.com/typicode/demo/db";
+     var xmlhttp = new XMLHttpRequest();
+     xmlhttp.open("GET", url, true);
+     xmlhttp.send();
+
+     xmlhttp.onreadystatechange = function() {
+         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+             document.getElementById("rawdata").innerHTML = xmlhttp.responseText;
+
+             data = JSON.parse(xmlhttp.responseText);
+
+             var parseText = "<table><tr>";
+             
+             for (var i = 0; i < data.posts.length; i++) {
+                parseText += "<td>" + data.posts[i].title + "</td>";
+             }    
+
+             parseText += "</tr><tr>";
+            
+             for (var i = 0; i < data.comments.length; i++) {
+                parseText += "<td>" + data.comments[i].body + "</td>";
+             }
+
+             parseText += "</tr></table>";  
+
+             document.getElementById("rawdata").innerHTML = parseText;      
+         }
+     }
    }
    
    
